@@ -1,0 +1,101 @@
+﻿@model List<Student>
+@{
+    ViewData["Title"] = "Kayit Ekle";
+}
+
+<h2>Ogrenci Listesi</h2>
+<button type="button" id="newStudent" class="btn btn-outline-dark">Yeni Kayit ekle</button>
+<br />
+<br />
+<table class="table table-striped table-bordered table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Isim</th>
+            <th scope="col">Soyisim</th>
+            <th scope="col">Yas</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Age</td>
+                <td>
+                    <button onclick="fillStudent(@item.Id)" type="button" class="btn btn-light"><i class="fa fa-pencil"></i></button>
+                    <button onclick="deleteStudent(@item.Id)" type="button" class="btn btn-light"><i class="fa fa-trash"></i></button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<div class="modal" id="studentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-group">
+                        <label for="Name">Isim</label>
+                        <input type="text" id="Name" class="form-control" placeholder="Isim giriniz">
+                    </div>
+                    <div class="form-group">
+                        <label for="Surname">Soyisim</label>
+                        <input type="text" id="Surname" class="form-control" placeholder="Soyisim giriniz">
+                    </div>
+                    <div class="form-group">
+                        <label for="Age">Yas</label>
+                        <input type="number" id="Age" class="form-control" placeholder="Yasinizi giriniz">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveStudent" class="btn btn-primary">Kaydet</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="updateStudentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Guncelle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-group">
+                        <label for="Name">Id</label>
+                        <input readonly type="number" id="updateId" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Isim</label>
+                        <input type="text" id="updateName" class="form-control" placeholder="Isim giriniz">
+                    </div>
+                    <div class="form-group">
+                        <label for="Surname">Soyisim</label>
+                        <input type="text" id="updateSurname" class="form-control" placeholder="Soyisim giriniz">
+                    </div>
+                    <div class="form-group">
+                        <label for="Age">Yas</label>
+                        <input type="number" id="updateAge" class="form-control" placeholder="Yasinizi giriniz">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveUpdatedStudent" class="btn btn-primary">Kaydet</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/home.js"></script>
